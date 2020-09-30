@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  api:
+    image: "node:12.18.4"
+    working_dir: "/usr/src/backend"
+    volumes:
+      - ./backend/package.json:/usr/src/backend/package.json
+      - ./backend/api/:/usr/src/backend/api/
+    ports:
+      - 8000:8000
+    command: sh -c "npm install && npm start"
+    links:
+      - db
+  db:
+    image: "mongo:4.4.1"
